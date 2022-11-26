@@ -4,14 +4,14 @@ const argv = require("yargs").argv;
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
       case "list":
-        const cont = await contactsActions.listContacts();
-        console.log(cont);
+        const contactList = await contactsActions.listContacts();
+        console.log(contactList);
       break;
 
     case "get":
         const contact = await contactsActions.getContactById(id);
         
-        if (contact === null) {
+        if (!contact) {
             throw new Error("\x1B[31m Contact not found")
         } 
         console.log(contact);
